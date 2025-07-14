@@ -17,7 +17,7 @@ export function ProviderListPage({
   onViewProfile, 
   onBack 
 }: ProviderListPageProps) {
-  const { signOut } = useAuth();
+  const { user, profile, signOut } = useAuth();
 
   const handleLogout = async () => {
     await signOut();
@@ -39,16 +39,19 @@ export function ProviderListPage({
               Voltar
             </Button>
             
-            <Button 
-              variant="outline" 
-              onClick={handleLogout}
-              size="sm"
-              className="text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200 hover:border-red-300"
-            >
-              <LogOut className="mr-2 h-4 w-4" />
-              <span className="hidden sm:inline">Sair da Conta</span>
-              <span className="sm:hidden">Sair</span>
-            </Button>
+            {/* Botão de logout só aparece se o usuário estiver logado */}
+            {user && profile && (
+              <Button 
+                variant="outline" 
+                onClick={handleLogout}
+                size="sm"
+                className="text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200 hover:border-red-300"
+              >
+                <LogOut className="mr-2 h-4 w-4" />
+                <span className="hidden sm:inline">Sair da Conta</span>
+                <span className="sm:hidden">Sair</span>
+              </Button>
+            )}
           </div>
           
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">

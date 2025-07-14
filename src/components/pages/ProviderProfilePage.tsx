@@ -82,17 +82,19 @@ export function ProviderProfilePage({ provider, onBack, onGoToLogin }: ProviderP
             Voltar
           </Button>
           
-          {/* Botão de logout estratégico */}
-          <Button 
-            variant="outline" 
-            onClick={handleLogout}
-            size="sm"
-            className="text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200 hover:border-red-300"
-          >
-            <LogOut className="mr-2 h-4 w-4" />
-            <span className="hidden sm:inline">Sair da Conta</span>
-            <span className="sm:hidden">Sair</span>
-          </Button>
+          {/* Botão de logout só aparece se o usuário estiver logado */}
+          {user && profile && (
+            <Button 
+              variant="outline" 
+              onClick={handleLogout}
+              size="sm"
+              className="text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200 hover:border-red-300"
+            >
+              <LogOut className="mr-2 h-4 w-4" />
+              <span className="hidden sm:inline">Sair da Conta</span>
+              <span className="sm:hidden">Sair</span>
+            </Button>
+          )}
         </div>
         
         <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
